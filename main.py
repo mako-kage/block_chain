@@ -1,11 +1,14 @@
 from fastapi import FastAPI
+import blockchain
 
+blockchain = blockchain.BlockChain()
 app = FastAPI()
 
 @app.get("/transaction_pool")
 def get_transaction():
+    
+    return blockchain.transaction_pool
 
-    pass
 
 @app.get("/chain")
 def get_chain():
