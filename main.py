@@ -6,14 +6,15 @@ app = FastAPI()
 
 @app.get("/transaction_pool")
 def get_transaction():
-    
+
     return blockchain.transaction_pool
 
 
 @app.get("/chain")
 def get_chain():
 
-    pass
+    return blockchain.chain
+
 
 @app.post("/transaction_pool")
 def post_transaction_pool():
