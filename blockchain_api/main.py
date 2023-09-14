@@ -33,7 +33,7 @@ def post_transaction_pool(transaction: Transaction):
     return {"message": "Transaction is posted."}
 
 
-@app.get("/creat_block")
-def create_block():
-
-    pass
+@app.get("/create_block/{creator}")
+def create_block(creator: str):
+    blockchain.create_new_block(creator)
+    return {"message": "New Block is Created."}
