@@ -1,2 +1,3 @@
 fastapi==0.70.0
 requests==2.26.0
+unvicorn==0.13
