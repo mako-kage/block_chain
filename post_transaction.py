@@ -7,14 +7,15 @@ def __main__():
 
     transaction = {
         "time": time,
-        "sender": "Yamada-san",
+        "sender": "Tanada-san",
         "receiver": "Sato-san",
-        "amount": 100,
-        "description": "Christmas Dinner Fee",
+        "amount": 200,
+        "description": "Fee",
         "signature": "signature_sample"
     }
 
-    url = "http://127.0.0.1:8000/transaction_pool/"
+    # url = "https://block-chain-p4f6.onrender.com/transaction_pool/"
+    url = "http://127.0.0.1:8002/transaction_pool/"
     res = requests.post(url, json.dumps(transaction))
 
     print(res.json())
