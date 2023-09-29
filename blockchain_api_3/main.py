@@ -37,10 +37,10 @@ def get_chain():
 
 @app.post("/transaction_pool")
 def post_transaction_pool(transaction: Transaction):
-
-    blockchain.add_transaction_pool(transaction)
-    blockchain.broadcast_transaction(transaction)
-    return {"message": "Transaction is posted."}
+    if blockchain.verify_transaction(transaction):
+        blockchain.add_transaction_pool(transaction)
+        blockchain.broadcast_transaction(transaction)
+        return {"message": "Transaction is posted."}
 
 
 @app.get("/create_block/{creator}")
@@ -51,10 +51,12 @@ def create_block(creator: str):
 
 @app.post("/receive_transaction")
 def receive_transaction(transaction: Transaction):
-    blockchain.add_transaction_pool(transaction)
-    return {"message": "Broadcast Transaction is success."}
+    if blockchain.verify_transaction(transaction):
+        blockchain.add_transaction_pool(transaction)
+        return {"message": "Broadcast Transaction is success."}
 
 @app.post("/receive_chain")
 def receive_chain(chain: Chain):
-    blockchain.replace_chain(chain)
-    return {"message": "Broadcast Chain is success."}
+    if blockchain.verify_chain(chain):
+        blockchain.replace_chain(chain)
+        return {"message": "Broadcast Chain is success."}
